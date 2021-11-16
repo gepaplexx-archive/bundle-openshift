@@ -1,0 +1,11 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: {{ .Values.postgres.subscription.name }}
+  namespace: openshift-operators
+spec:
+  channel: {{ .Values.postgres.subscription.channel }}
+  installPlanApproval: {{ .Values.postgres.subscription.installPlanApproval }}
+  name: postgresql
+  source: community-operators
+  sourceNamespace: openshift-marketplace
