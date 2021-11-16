@@ -6,6 +6,6 @@ metadata:
 spec:
   channel: {{ .Values.postgres.subscription.channel }}
   installPlanApproval: {{ .Values.postgres.subscription.installPlanApproval }}
-  name: postgresql
-  source: community-operators
+  name: crunchy-postgres-operator
+  source: certified-operators
   sourceNamespace: openshift-marketplace
