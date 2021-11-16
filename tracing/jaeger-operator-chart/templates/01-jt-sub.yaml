@@ -5,6 +5,7 @@ metadata:
   namespace: openshift-operators
 spec:
   channel: "{{ .Values.jaeger.subscription.channel }}"
+  installPlanApproval: {{ .Values.jaeger.subscription.installPlanApproval }}
   name: jaeger-product
   source: redhat-operators
-  sourceNamespace: openshift-marketplace
+  sourceNamespace: openshift-marketplace 
