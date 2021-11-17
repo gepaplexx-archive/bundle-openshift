@@ -1,12 +1,12 @@
 clusterAdminSAName: gp-admin-sa
 
 resourceQuota:
-requests:
-  cpu: 3
-  memory: 2Gi
-limits:
-  cpu: 6
-  memory: 5Gi
+  requests:
+    cpu: 3
+    memory: 2Gi
+  limits:
+    cpu: 6
+    memory: 5Gi
 
 limitRange:
   default:
