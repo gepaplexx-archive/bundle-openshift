@@ -1,0 +1,10 @@
+argocd:  
+  application:
+    name: "resource-locker-operator"
+    source:
+      appRepoURL: https://github.com/gepaplexx/bundle-openshift.git
+      chartPath: operators/resource-locker/resource-locker-chart
+      appRevision: "environment/play"
+
+  project:
+    name: infrastructure

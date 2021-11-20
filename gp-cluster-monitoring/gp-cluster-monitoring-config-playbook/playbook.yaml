@@ -1,0 +1,21 @@
+---
+- name: Deploy Cluster Configuration
+  hosts: all
+  become: false
+  environment:
+    KUBECONFIG: "/Users/markogattringer/.kube/config"
+  tasks:
+
+    - name: Add gepaplexx Helm charts repository
+      community.kubernetes.helm_repository:
+        name: gepaplexx-charts
+        repo_url: "{{ gepaplexx_helm_repo }}"
+
+    - name: Install Cluster Monitoring Operator
+      community.kubernetes.helm:
+        name: gp-cluster-monitoring
+        chart_ref: gepaplexx-charts/gp-bke-argocd-helm
+        release_namespace: gp-infrastructure
+        values_files:
+          - ../argo-values.yaml
+...
