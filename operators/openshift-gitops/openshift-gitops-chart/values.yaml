@@ -1,0 +1,3 @@
+gitops:
+  channel: stable
+  installPlanApproval: Automatic
