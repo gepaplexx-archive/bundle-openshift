@@ -1,0 +1,29 @@
+{{ if (eq .Values.google.enable true) }}
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: ResourceLocker
+metadata:
+  name: patch-identity-prov-google
+  annotations:
+    avp_path: {{ .Values.google.vaultSecretpath }}
+spec:
+  serviceAccountRef:
+    name: resource-locker-sa
+  patches:
+  - targetObjectRef:
+      apiVersion: config.openshift.io/v1
+      kind: OAuth
+      name: cluster
+    patchTemplate: |
+      spec:
+        identityProviders:
+          - name: Gepardec
+            mappingMethod: claim
+            type: Google
+            google:
+              clientID: <{{ .Values.google.vaultClientIdKey }}>
+              clientSecret:
+                name: {{ .Values.google.k8secretName }}
+              hostedDomain: <{{ .Values.google.vaultRestrDomainKey }}>
+    patchType: application/strategic-merge-patch+json
+    id: patch-identity-prov-google
+{{ end }}
