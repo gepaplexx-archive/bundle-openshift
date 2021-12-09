@@ -3,8 +3,6 @@ apiVersion: redhatcop.redhat.io/v1alpha1
 kind: ResourceLocker
 metadata:
   name: patch-identity-prov-google
-  annotations:
-    avp_path: {{ .Values.google.vaultSecretpath }}
 spec:
   serviceAccountRef:
     name: resource-locker-sa
@@ -20,10 +18,10 @@ spec:
             mappingMethod: claim
             type: Google
             google:
-              clientID: <{{ .Values.google.vaultClientIdKey }}>
+              clientID: {{ .Values.google.clientId }}
               clientSecret:
                 name: {{ .Values.google.k8secretName }}
-              hostedDomain: <{{ .Values.google.vaultRestrDomainKey }}>
+              hostedDomain: {{ .Values.google.restrDomain }}
     patchType: application/strategic-merge-patch+json
     id: patch-identity-prov-google
 {{ end }}

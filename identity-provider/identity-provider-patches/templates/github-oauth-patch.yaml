@@ -1,10 +1,8 @@
-{{ if (eq .Values.htpasswd.enable true) }}
+{{ if (eq .Values.git.enable true) }}
 apiVersion: redhatcop.redhat.io/v1alpha1
 kind: ResourceLocker
 metadata:
-  name: patch-identity-prov-htpasswd
-  annotations:
-    avp_path: {{ .Values.htpasswd.vaultSecretpath }}
+  name: patch-identity-prov-git
 spec:
   serviceAccountRef:
     name: resource-locker-sa
@@ -16,12 +14,14 @@ spec:
     patchTemplate: |
       spec:
         identityProviders:
-          - name: HTPasswd
+          - name: Gepaplexx
             mappingMethod: claim
-            type: HTPasswd
-            htpasswd:
-              fileData: 
-                name: <{{ .Values.htpasswd.vaultHtpasswdKey }}>
+            type: GitHub
+            github:
+              clientID: {{ .Values.git.clientId }}
+              clientSecret:
+                name: {{ .Values.git.k8secretName }}
+              organizations: [{{ .Values.git.restrOrgs }}]
     patchType: application/strategic-merge-patch+json
-    id: patch-identity-prov-htpasswd
+    id: patch-identity-prov-git
 {{ end }}
