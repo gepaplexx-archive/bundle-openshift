@@ -4,4 +4,4 @@ rl:
     installPlanApproval: Automatic
     namespace: openshift-operators
   rbac:
-    namespace: gp-infrastructure
+    namespace: openshift-gitops
