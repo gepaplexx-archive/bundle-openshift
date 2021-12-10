@@ -20,6 +20,6 @@ spec:
             htpasswd:
               fileData: 
                 name: {{ .Values.htpasswd.k8secretName }}
-    patchType: application/strategic-merge-patch+json
+    patchType: application/merge-patch+json
     id: patch-identity-prov-htpasswd
 {{ end }}
