@@ -1,0 +1,5 @@
+cache:
+  url: 
+
+machineconfig:
+  name: 02-worker-registry-mirror
