@@ -1,0 +1,18 @@
+# production / staging
+issuer:
+  #acmeServer: https://acme-staging-v02.api.letsencrypt.org/directory 
+  acmeServer: https://acme-v02.api.letsencrypt.org/directory
+  acmeEmail: noreply@gepaplexx.com
+
+solvers:
+  dnsZones:
+    - play.gepaplexx.com
+  region: eu-central-1
+  accessKeyId: XXYYXX
+  secretAccessKey: ZZXXYY
+
+certificates:
+  defaultIngress: "*.apps.play.gepaplexx.com"
+  console: play.gepaplexx.com
+  api: api.play.gepaplexx.com
+  
