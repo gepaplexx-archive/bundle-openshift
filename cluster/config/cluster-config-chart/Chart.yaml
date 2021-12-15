@@ -1,5 +1,5 @@
 apiVersion: v2
-name: gp-cluster-config-chart
+name: cluster-config-chart
 description: A gepaplexx Helm chart setup an Openshift-Cluster with gepaplexx specific configs
 
 # A chart can be either an 'application' or a 'library' chart.
