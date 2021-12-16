@@ -1,6 +1,0 @@
-gp-bke-argocd:
-  argocd:
-    enableVault: true
-    name: "gp-infra"
-    repo:
-      serviceaccount: argo-vault-sa

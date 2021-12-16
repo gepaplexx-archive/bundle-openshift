@@ -17,7 +17,13 @@ jobs:
         uses: WyriHaximus/github-action-helm3@v2
         with:
           exec: |
-            helm lint ./bke/*/.
+            helm lint backup/velero/velero-chart
+            helm lint certificates/*
+            helm lint cluster/*/*
+            helm lint identity-provider/*
+            helm lint registries/*
+            helm lint secret-store/*/*
+            helm lint storage/*/*
 
 
   release:
