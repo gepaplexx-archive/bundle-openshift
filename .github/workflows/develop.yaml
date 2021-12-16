@@ -17,10 +17,10 @@ jobs:
         uses: WyriHaximus/github-action-helm3@v2
         with:
           exec: |
-            helm lint backup/velero/velero-chart
-            helm lint certificates/* || exit 1
-            helm lint cluster/*/*
-            helm lint identity-provider/*
-            helm lint registries/*
-            helm lint secret-store/*/*
-            helm lint storage/*/*
+            helm lint backup/velero/velero-chart || exit 1
+            // helm lint certificates/* || exit 1
+            helm lint cluster/*/* || exit 1
+            helm lint identity-provider/* || exit 1
+            helm lint registries/* || exit 1
+            helm lint secret-store/*/* || exit 1
+            helm lint storage/*/* || exit 1
