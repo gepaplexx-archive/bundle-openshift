@@ -1,0 +1,21 @@
+---
+name: Build and push Helm charts
+
+'on':
+  push:
+    branches:
+      - 'develop'
+    tags-ignore:
+      - '**'
+
+jobs:
+  lint-helm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Lint Helm
+        uses: WyriHaximus/github-action-helm3@v2
+        with:
+          exec: |
+            helm lint ./backup/velero/velero-chart
+            helm lint certificates/gp-certificates-patches-chart

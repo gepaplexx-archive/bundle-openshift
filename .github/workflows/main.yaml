@@ -4,11 +4,22 @@ name: Build and push Helm charts
 'on':
   push:
     branches:
-      - 'develop'
+      - 'main'
     tags-ignore:
       - '**'
 
 jobs:
+  lint-helm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Lint Helm
+        uses: WyriHaximus/github-action-helm3@v2
+        with:
+          exec: |
+            helm lint ./bke/*/.
+
+
   release:
     runs-on: ubuntu-latest
     steps:
@@ -31,4 +42,4 @@ jobs:
           charts_url: https://gepaplexx.github.io/gp-helm-charts/
           owner: gepaplexx
           repository: gp-helm-charts
-          branch: main        
+          branch: main
