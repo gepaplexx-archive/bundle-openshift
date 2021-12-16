@@ -18,7 +18,7 @@ jobs:
         with:
           exec: |
             helm lint backup/velero/velero-chart || exit 1
-            // helm lint certificates/* || exit 1
+            # helm lint certificates/* || exit 1
             helm lint cluster/*/* || exit 1
             helm lint identity-provider/* || exit 1
             helm lint registries/* || exit 1
