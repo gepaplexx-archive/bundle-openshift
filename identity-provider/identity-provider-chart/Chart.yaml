@@ -1,6 +1,6 @@
 apiVersion: v2
-name: identity-provider-secrets
-description: A Helm Chart to deploy the identity provider secrets.
+name: identity-provider-chart
+description: A Helm Chart to deploy the identity providers.
 
 # A chart can be either an 'application' or a 'library' chart.
 #

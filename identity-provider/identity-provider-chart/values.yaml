@@ -1,0 +1,17 @@
+google:
+  enable: true
+  k8secretName: google-oauth-secret
+  clientId: 124682727554-ucq9mh4lmvjffm14151cmrhb5sahfvrs.apps.googleusercontent.com
+  restrDomain: gepardec.com
+
+git:
+  enable: true
+  k8secretName: github-oauth-secret
+  clientId: 0bc0ceff8c13d699d35e
+  restrOrgs:
+    - gepaplexx
+    - Gepardec
+
+htpasswd:
+  enable: true
+  k8secretName: htpass-oauth-secret

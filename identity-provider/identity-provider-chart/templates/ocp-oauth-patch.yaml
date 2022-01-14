@@ -22,7 +22,11 @@ spec:
                 clientID: {{ .Values.git.clientId }}
                 clientSecret:
                   name: {{ .Values.git.k8secretName }}
-                organizations: [{{ .Values.git.restrOrgs }}]
+                organizations:
+                  {{- range .Values.git.restrOrgs }}
+                  - {{ . | quote }}
+                  {{- end }}
+
 {{ end }} {{ if .Values.google.enable }}
             - name: Gepardec
               mappingMethod: claim
