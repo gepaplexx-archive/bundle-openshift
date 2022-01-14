@@ -1,0 +1,21 @@
+{{- if (eq .Values.resourceLocker.enabled true)}}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: resource-locker-operator
+spec:
+  destination:
+    namespace: {{ default .Release.Namespace .Values.resourceLocker.destination.namespace }}
+    server: 'https://kubernetes.default.svc'
+  project: {{ default "default" .Values.resourceLocker.argoProject }}
+  source:
+    path: {{ .Values.resourceLocker.source.path }}
+    repoURL: {{ .Values.resourceLocker.source.repoURL }}
+    targetRevision: {{ .Values.resourceLocker.source.targetRevision }}
+syncPolicy:
+  automated:
+    prune: {{ .Values.resourceLocker.syncPolicy.automated.prune }}
+    selfHeal: {{ .Values.resourceLocker.syncPolicy.automated.selfHeal }}
+  syncOptions:
+    - CreateNamespace={{ .Values.resourceLocker.destination.create }}
+{{- end }}
