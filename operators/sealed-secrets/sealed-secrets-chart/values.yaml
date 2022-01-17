@@ -1,5 +1,0 @@
-sealed-secrets-chart:
-  podSecurityContext:
-    enabled: false
-  containerSecurityContext:
-    enabled: false

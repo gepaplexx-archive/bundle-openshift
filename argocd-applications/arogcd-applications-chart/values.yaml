@@ -1,53 +1,53 @@
-###############################################################
+applications:
 ################## RESOURCE LOCKER OPERATOR ###################
-###############################################################
-resourceLocker:
-  enabled: true
-  destination:
-    namespace: openshift-gitops
-    create: true
-  argoProject: gepaplexx
-  source:
-    repoURL: https://github.com/gepaplexx/bundle-openshift
-    path: operators/resource-locker/resource-locker-operator
-    targetRevision: main
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  - name: resource-locker-operator
+    enabled: true
+    destination:
+      namespace: openshift-gitops
+      create: true
+    argoProject: gepaplexx
+    source:
+      repoURL: https://github.com/gepaplexx/bundle-openshift
+      path: operators/resource-locker/resource-locker-operator
+      targetRevision: main
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
 
-###############################################################
 ################## SEALED SECRETS OPERATOR ####################
-###############################################################
-sealedSecrets:
-  enabled: true
-  destination:
-    namespace: openshift-gitops
-    create: true
-  argoProject: gepaplexx
-  source:
-    repoURL: https://github.com/gepaplexx/bundle-openshift
-    path: operators/sealed-secrets/sealed-secrets-chart
-    targetRevision: main
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  - name: sealed-secrets-operator
+    enabled: true
+    destination:
+      namespace: openshift-gitops
+      create: true
+    argoProject: gepaplexx
+    source:
+      chart: sealed-secrets
+      repoURL: https://bitnami-labs.github.io/sealed-secrets
+      targetRevision: 2.*
+      helm:
+        podSecurityContext:
+          enabled: false
+        containerSecurityContext:
+          enabled: false
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
 
-###############################################################
 ###################### IDENTITY PROVIDER ######################
-###############################################################
-identityProvider:
-  enabled: true
-  destination:
-    namespace: openshift-gitops
-    create: true
-  argoProject: gepaplexx
-  source:
-    repoURL: https://github.com/gepaplexx/bundle-openshift
-    path: identity-provider/identity-provider-chart
-    targetRevision: main
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  - name: identity-provider
+    enabled: true
+    destination:
+      namespace: openshift-gitops
+      create: true
+    argoProject: gepaplexx
+    source:
+      repoURL: https://github.com/gepaplexx/bundle-openshift
+      path: identity-provider/identity-provider-chart
+      targetRevision: main
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
