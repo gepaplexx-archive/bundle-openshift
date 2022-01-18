@@ -29,10 +29,8 @@ applications:
       repoURL: https://bitnami-labs.github.io/sealed-secrets
       targetRevision: 2.*
       helm:
-        podSecurityContext:
-          enabled: false
-        containerSecurityContext:
-          enabled: false
+        podSecurityContext.enabled: false
+        containerSecurityContext.enabled: false
     syncPolicy:
       automated:
         prune: true
