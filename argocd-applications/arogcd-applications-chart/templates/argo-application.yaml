@@ -1,4 +1,5 @@
 {{- range .Values.applications}}
+{{- with . }}
 {{- if (eq .enabled true)}}
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -19,5 +20,6 @@ spec:
   syncOptions:
     - CreateNamespace={{ .destination.create }}
 ...
+{{- end }}
 {{- end }}
 {{- end }}

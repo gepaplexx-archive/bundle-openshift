@@ -1,6 +1,7 @@
 applications:
 ################## RESOURCE LOCKER OPERATOR ###################
-  - name: resource-locker-operator
+  resourceLocker:
+    name: resource-locker-operator
     enabled: true
     destination:
       namespace: openshift-gitops
@@ -16,8 +17,9 @@ applications:
         selfHeal: true
 
 ################## SEALED SECRETS OPERATOR ####################
-  - name: sealed-secrets-operator
-    enabled: true
+  sealedSecretsOperator:
+    name: sealed-secrets-operator
+    enabled: false
     destination:
       namespace: openshift-gitops
       create: true
@@ -37,8 +39,9 @@ applications:
         selfHeal: true
 
 ###################### IDENTITY PROVIDER ######################
-  - name: identity-provider
-    enabled: true
+  identityProvider:
+    name: identity-provider
+    enabled: false
     destination:
       namespace: openshift-gitops
       create: true
@@ -47,6 +50,30 @@ applications:
       repoURL: https://github.com/gepaplexx/bundle-openshift
       path: identity-provider/identity-provider-chart
       targetRevision: main
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+
+########################### VELERO ############################
+  velero:
+    name: velero
+    enabled: false
+    destination:
+      namespace: velero
+      create: true
+    argoProject: gepaplexx
+    source:
+      repoURL: https://github.com/gepaplexx/bundle-openshift
+      path: backup/velero/velero-chart
+      targetRevision: main
+      helm:
+        configuration:
+          backupStorageLocation:
+            bucket: <TODO via Ansible>
+            config:
+              region: <TODO via Ansible>
+              s3Url: <TODO via Ansible>
     syncPolicy:
       automated:
         prune: true
