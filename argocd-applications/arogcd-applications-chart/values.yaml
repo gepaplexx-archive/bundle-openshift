@@ -10,7 +10,7 @@ applications:
     source:
       repoURL: https://github.com/gepaplexx/bundle-openshift
       path: operators/resource-locker/resource-locker-operator
-      targetRevision: main
+      targetRevision: feature/migrate-to-sealed-secrets
     syncPolicy:
       automated:
         prune: true
@@ -19,7 +19,7 @@ applications:
 ################## SEALED SECRETS OPERATOR ####################
   sealedSecretsOperator:
     name: sealed-secrets-operator
-    enabled: false
+    enabled: true
     destination:
       namespace: openshift-gitops
       create: true
