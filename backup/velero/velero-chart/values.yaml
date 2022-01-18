@@ -274,7 +274,8 @@ credentials:
   # Whether a secret should be used as the source of IAM account
   # credentials. Set to false if, for example, using kube2iam or
   # kiam to provide IAM credentials for the Velero pod.
-  useSecret: true
+  useSecret: false
+  useSealedSecret: true
   # Name of the secret to create if `useSecret` is true and `existingSecret` is empty
   name:
   # Name of a pre-existing secret (if any) in the Velero namespace
@@ -289,6 +290,8 @@ credentials:
   # [GCP] https://github.com/vmware-tanzu/velero-plugin-for-gcp/blob/main/README.md
   # [Azure] https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure/blob/main/README.md
   secretContents:
+
+  sealedSecretContent: AgBeg5RFVtP0Wr3Q+eyPhESpsJikpOCbSqc0tKAeIGQyeQljHNp0w15ZzOg9UZCUCQu7PDidJ3uAc0a/cBBCr5tWZ1l2tEV/T59izHFdStmnRBFfQeVyc06gQGMMskVpUtc8GiefIKFwx3Q6tg5wCn4mzPpFqOy8ltaA7oJlb/bDGxFYRsfoBiuXSJ73UDY36GaHEqx/7NDbt4lWlfDjOYySBJjTVmG0raNN+P4pMYic8OUDXKu9INhv2mhi6RO538X0vLkIYD+3jFfw6aR7uqqQU9iH3rME9pDV/2o8rulfvER1WnUSDHIbXC54qU7eV0oGN+EY4uq14f1Ok1x389EA//4Lbv44ap+gUl/vk7ufiEex6g2Uh3lDeYKAuHCS/uun9pBqHvhFCX7OEMuD8eTFlr8SSGdH3jlQb3p69IAMEBrk3GMEe4aUDQVLLbmKdabiIweihsK6q7JHybtkYcUUgm66m/BCCoVWD4t0+dJrCzrmK7/tZBviljVBsxwyHj+BDjvMf26EzAAkblSqy61+CSGsLfoE8YXFCiKEvPfzzMbgzS80Ng+Xxj9mGoV4ELemDAc96mg1q8bPSEnyCZshtRuqbR1IEIdqZJl5x2mCLGb+Bfv+ipVzOIARUClLEi0JnRojAdXHwYjarLZU9rKvndlRCzvPEn3XeVXhIxH2/UuEdOdwqZhTHdSox0gNE4WKoHh4e2VwuqIis+VCT1+ed8q//Jzjn7dn75gqBpKjSoIDX8pBnPJIHJbsOKOII1cKh92zcPRM3Fpkkrr0CBJRyJRq5I7PwBVIZQi6U1EDcPATz1HNeYPQnNxkMNBsWzY=
 
   # additional key/value pairs to be used as environment variables such as "DIGITALOCEAN_TOKEN: <your-key>". Values will be stored in the secret.
   extraEnvVars: {}
