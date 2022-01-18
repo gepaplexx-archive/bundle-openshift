@@ -1,0 +1,18 @@
+argocd:
+  projectname: gepaplexx
+  applicationame: gepaplexx-argo-apps
+
+sealedSecrets:
+  tls:
+    crt: <TODO via ansible vault>
+    key: <TODO via ansible vault>
+
+helm:
+  applications:
+    velero:
+      configuration:
+        backupStorageLocation:
+          bucket: <TODO via Ansible>
+          config:
+            region: <TODO via Ansible>
+            s3Url: <TODO via Ansible>

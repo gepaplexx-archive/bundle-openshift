@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.argocd.applicationname }}
+spec:
+  destination:
+    namespace: openshift-gitops
+    server: 'https://kubernetes.default.svc'
+  project: gepaplexx
+  source:
+    repoURL: https://github.com/gepaplexx/bundle-openshift
+    path: argocd-applications/argocd-applications-chart
+    targetRevision: feature/migrate-to-sealed-secrets
+    helm:
+{{ toYaml .Values.helm | indent 6 }}
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
