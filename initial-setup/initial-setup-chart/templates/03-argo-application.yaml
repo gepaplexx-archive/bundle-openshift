@@ -10,9 +10,9 @@ spec:
   source:
     repoURL: https://github.com/gepaplexx/bundle-openshift
     path: argocd-applications/argocd-applications-chart
-    targetRevision: feature/migrate-to-sealed-secrets
+    targetRevision: {{ .Values.argocd.targetRevision }}
     helm:
-{{ toYaml .Values.helm | indent 6 }}
+{{ toYaml .Values.argocd.helm | indent 6 }}
 syncPolicy:
   automated:
     prune: true
