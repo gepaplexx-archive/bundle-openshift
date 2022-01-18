@@ -9,7 +9,7 @@ applications:
     argoProject: gepaplexx
     source:
       repoURL: https://github.com/gepaplexx/bundle-openshift
-      path: operators/resource-locker/resource-locker-operator
+      path: operators/resource-locker/resource-locker-chart
       targetRevision: feature/migrate-to-sealed-secrets
     syncPolicy:
       automated:
@@ -19,7 +19,7 @@ applications:
 ################## SEALED SECRETS OPERATOR ####################
   sealedSecretsOperator:
     name: sealed-secrets-operator
-    enabled: false
+    enabled: true
     destination:
       namespace: openshift-gitops
       create: true
