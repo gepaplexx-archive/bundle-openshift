@@ -59,7 +59,7 @@ applications:
 ####################### CLUSTER-CONFIG ########################
   clusterConfig:
     name: cluster-config
-    enabled: false
+    enabled: true
     destination:
       namespace: gp-infrastructure
       create: true
