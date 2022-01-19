@@ -5,6 +5,7 @@ metadata:
 spec:
   serviceAccountRef:
     name: resource-locker-sa
+    namespace: openshift-operators
   patches:
   - targetObjectRef:
       apiVersion: config.openshift.io/v1
