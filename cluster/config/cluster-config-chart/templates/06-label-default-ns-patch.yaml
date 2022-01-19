@@ -2,6 +2,7 @@ apiVersion: redhatcop.redhat.io/v1alpha1
 kind: ResourceLocker
 metadata:
   name: label-default-ns
+  namespace: openshift-operators
 spec:
   serviceAccountRef:
     name: resource-locker-sa
