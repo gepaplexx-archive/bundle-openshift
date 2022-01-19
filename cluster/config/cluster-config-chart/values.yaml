@@ -1,5 +1,8 @@
 clusterAdminSAName: gp-admin-sa
 
+projectTemplate:
+  namespace: openshift-config
+
 resourceQuota:
   requests:
     cpu: 3

@@ -3,6 +3,7 @@ kind: Template
 metadata:
   creationTimestamp: null
   name: project-request
+  namespace: {{ .Values.projectTemplate.namespace | default .Release.Namespace }}
 objects:
 - apiVersion: project.openshift.io/v1
   kind: Project
