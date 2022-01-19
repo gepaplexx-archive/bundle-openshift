@@ -5,7 +5,7 @@ applications:
     enabled: true
     destination:
       namespace: openshift-gitops
-      create: true
+      create: false
     argoProject: gepaplexx
     source:
       repoURL: https://github.com/gepaplexx/bundle-openshift
@@ -22,7 +22,7 @@ applications:
     enabled: true
     destination:
       namespace: openshift-gitops
-      create: true
+      create: false
     argoProject: gepaplexx
     source:
       chart: sealed-secrets
@@ -44,13 +44,47 @@ applications:
     name: identity-provider
     enabled: false
     destination:
-      namespace: openshift-gitops
+      namespace: gp-infrastructure
       create: true
     argoProject: gepaplexx
     source:
       repoURL: https://github.com/gepaplexx/bundle-openshift
       path: identity-provider/identity-provider-chart
-      targetRevision: main
+      targetRevision: feature/migrate-to-sealed-secrets
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+
+####################### CLUSTER-CONFIG ########################
+  clusterConfig:
+    name: cluster-config
+    enabled: false
+    destination:
+      namespace: gp-infrastructure
+      create: true
+    argoProject: gepaplexx
+    source:
+      repoURL: https://github.com/gepaplexx/bundle-openshift
+      path: cluster/config/cluster-config-chart
+      targetRevision: feature/migrate-to-sealed-secrets
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+
+####################### CLUSTER-UPDATER #######################
+  clusterUpdater:
+    name: cluster-updater
+    enabled: true
+    destination:
+      namespace: gp-infrastructure
+      create: true
+    argoProject: gepaplexx
+    source:
+      repoURL: https://github.com/gepaplexx/bundle-openshift
+      path: cluster/updater/cluster-updater-chart
+      targetRevision: feature/migrate-to-sealed-secrets
     syncPolicy:
       automated:
         prune: true
@@ -67,15 +101,87 @@ applications:
     source:
       repoURL: https://github.com/gepaplexx/bundle-openshift
       path: backup/velero/velero-chart
-      targetRevision: main
+      targetRevision: feature/migrate-to-sealed-secrets
       helm:
-        configuration:
-          backupStorageLocation:
-            bucket: <TODO via Ansible>
-            config:
-              region: <TODO via Ansible>
-              s3Url: <TODO via Ansible>
+        parameters:
+          - name: configuration.backupStorageLocation.bucket
+            value: <TODO via ansible vault>
+          - name: configuration.backupStorageLocation.config.region
+            value: <TODO via ansible vault>
+          - name: configuration.backupStorageLocation.config.s3Url
+            value: <TODO via ansible vault>
     syncPolicy:
       automated:
         prune: true
         selfHeal: true
+
+########################## ROOK/CEPH ##########################
+  rookCeph:
+    name: rook-ceph
+    enabled: false
+    destination:
+      namespace: rook-ceph
+      create: true
+    argoProject: gepaplexx
+    source:
+      repoURL: https://github.com/gepaplexx/bundle-openshift
+      path: storage/rook-ceph/gp-storage-cephcluster-chart
+      targetRevision: feature/migrate-to-sealed-secrets
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+
+################### CLUSTER-LOGGING OPERATOR ##########################
+  clusterLoggingOperator:
+    name: cluster-logging-operator
+    enabled: false
+    destination:
+      namespace: openshif-logging
+      create: true
+    argoProject: gepaplexx
+    source:
+      repoURL: https://github.com/gepaplexx/bundle-openshift
+      path: operators/cluster-logging/cluster-logging-operator-chart
+      targetRevision: feature/migrate-to-sealed-secrets
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+
+####################### CLUSTER-LOGGING #######################
+  clusterLogging:
+    name: cluster-logging
+    enabled: false
+    destination:
+      namespace: openshift-logging
+      create: true
+    argoProject: gepaplexx
+    source:
+      repoURL: https://github.com/gepaplexx/bundle-openshift
+      path: cluster/logging/cluster-logging-chart
+      targetRevision: feature/migrate-to-sealed-secrets
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+
+##################### CLUSTER-MONITORING ######################
+  clusterMonitoring:
+    name: cluster-monitoring
+    enabled: false
+    destination:
+      namespace: openshift-monitoring
+      create: true
+    argoProject: gepaplexx
+    source:
+      repoURL: https://github.com/gepaplexx/bundle-openshift
+      path: cluster/monitoring/cluster-monitoring-chart
+      targetRevision: feature/migrate-to-sealed-secrets
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
+
+# TODO certificates/*, registries/*, secret-store/*???,
+# TODO Operators: jaeger, oauth-group-sync, pipelines, postgres
