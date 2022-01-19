@@ -2,10 +2,10 @@ apiVersion: redhatcop.redhat.io/v1alpha1
 kind: ResourceLocker
 metadata:
   name: project-template-patch
+  namespace: openshift-operators
 spec:
   serviceAccountRef:
     name: resource-locker-sa
-    namespace: openshift-operators
   patches:
   - targetObjectRef:
       apiVersion: config.openshift.io/v1
