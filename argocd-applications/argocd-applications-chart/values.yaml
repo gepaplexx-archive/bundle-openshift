@@ -4,7 +4,7 @@ applications:
     name: resource-locker-operator
     enabled: true
     destination:
-      namespace: openshift-gitops
+      namespace: openshift-operators
       create: false
     argoProject: gepaplexx
     source:
