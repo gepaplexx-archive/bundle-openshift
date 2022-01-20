@@ -93,7 +93,7 @@ applications:
 ########################### VELERO ############################
   velero:
     name: velero
-    enabled: false
+    enabled: true
     destination:
       namespace: velero
       create: true
@@ -105,11 +105,11 @@ applications:
       helm:
         parameters:
           - name: configuration.backupStorageLocation.bucket
-            value: <TODO via ansible vault>
+            value: play.gepaplexx.com # TODO via ansible vault?
           - name: configuration.backupStorageLocation.config.region
-            value: <TODO via ansible vault>
+            value: minio # TODO via ansible vault?
           - name: configuration.backupStorageLocation.config.s3Url
-            value: <TODO via ansible vault>
+            value: http://10.20.26.100:9000 # TODO via ansible vault?
     syncPolicy:
       automated:
         prune: true
