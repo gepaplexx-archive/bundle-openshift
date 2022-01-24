@@ -13,7 +13,7 @@ spec:
     targetRevision: {{ .Values.argocd.targetRevision }}
     helm:
 {{ toYaml .Values.argocd.helm | indent 6 }}
-syncPolicy:
-  automated:
-    prune: true
-    selfHeal: true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
