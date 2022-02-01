@@ -275,6 +275,7 @@ credentials:
   # credentials. Set to false if, for example, using kube2iam or
   # kiam to provide IAM credentials for the Velero pod.
   useSecret: true
+  # use sealed secret instead of plain secret
   useSealedSecret: true
   # Name of the secret to create if `useSecret` is true and `existingSecret` is empty
   name:
